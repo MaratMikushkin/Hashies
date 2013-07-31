@@ -1,26 +1,10 @@
-class Mash
-  def initialize
-    @hash = {}
-  end
-  
-  def method_missing(m, *args)
-    key = m.to_s[0-1]
-    case m.to_s[-1]
-    when '?'
-      return @hash[m] != nil ? true : false
-    when '!'
-      #
-    when '_'
-      #
-    else
-      @hash[m] = args[0]
-    end
-  end
-end
+# require 'mash'
+require 'spec_helper'
 
-describe Mash do
+
+describe Hashies::Mash do
   before do
-    @mash = Mash.new
+    @mash = Hashies::Mash.new
   end
   
   it "" do
@@ -37,8 +21,13 @@ describe Mash do
   
   it "" do
     @mash.name = "My Mash"
-    @mash.name?.should == true
+    @mash.name.should == "My Mash"
   end
+
+  # it "" do
+  #   @mash.name = "My Mash"
+  #   @mash.name?.should == true
+  # end
 end
 
 describe Mash do
