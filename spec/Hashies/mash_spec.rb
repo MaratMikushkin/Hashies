@@ -30,9 +30,9 @@ describe Hashies::Mash do
   # end
 end
 
-describe Mash do
+describe Hashies::Mash do
   before do
-    @mash = Mash.new
+    @mash = Hashies::Mash.new
   end
 ## use bang methods for multi-level assignment
 #mash.author!.name = "Michael Bleigh"
