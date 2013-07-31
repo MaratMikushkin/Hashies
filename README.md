@@ -1,5 +1,11 @@
 # Hashies
 
+[![Code Climate](https://codeclimate.com/github/MaratMikushkin/Hashies.png)](https://codeclimate.com/github/MaratMikushkin/Hashies)
+
+[![Build Status](https://travis-ci.org/MaratMikushkin/Hashies.png)](https://travis-ci.org/MaratMikushkin/Hashies)
+
+[![Coverage Status](https://coveralls.io/repos/MaratMikushkin/Hashies/badge.png?branch=master)](https://coveralls.io/r/MaratMikushkin/Hashies?branch=master)
+
 TODO: Write a gem description
 
 ## Installation

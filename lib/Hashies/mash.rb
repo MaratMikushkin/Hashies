@@ -13,9 +13,12 @@ module Hashies
         when '?'
           return @hash[key.to_sym] != nil ? true : false
         when '!'
-          #
+          @hash[key.to_sym] = Mash.new unless @hash[key.to_sym]
         when '_'
-          #
+          @hash[key.to_sym]
+          #if @hash[key.to_sym]
+          #  true
+          #elsif
         else
           # puts @hash
           @hash[m.to_sym]

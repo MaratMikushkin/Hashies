@@ -24,24 +24,34 @@ describe Hashies::Mash do
     @mash.name.should == "My Mash"
   end
 
-  # it "" do
-  #   @mash.name = "My Mash"
-  #   @mash.name?.should == true
-  # end
+  it "" do
+    @mash.name = "My Mash"
+    @mash.name?.should == true
+  end
 end
 
 describe Hashies::Mash do
   before do
     @mash = Hashies::Mash.new
   end
-## use bang methods for multi-level assignment
-#mash.author!.name = "Michael Bleigh"
-#mash.author # => <Hashie::Mash name="Michael Bleigh">
+  
+  it "" do
+    @mash.author!.name = "Michael Bleigh"
+    @mash.author.name.should == "Michael Bleigh" 
+    #puts @mash.author # => <Hashie::Mash name="Michael Bleigh">
+  end
 end
 
-
-
-#mash = Mash.new
-## use under-bang methods for multi-level testing
-#mash.author_.name? # => false
-#mash.inspect # => <Hashie::Mash>
+describe Hashies::Mash do
+  before do
+    @mash = Hashies::Mash.new
+  end
+  
+  it "" do
+    @mash.author_.should == nil
+    @mash.author!
+    
+    @mash.author_.should_not == nil
+    @mash.author_.name?.should == false
+  end
+end
