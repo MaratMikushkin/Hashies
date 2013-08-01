@@ -11,6 +11,14 @@ module Hashies
       self.properties[current_property] = options
     end
     
+    def [](parameter)
+      if @hash.has_key?(parameter)
+        @hash[parameter]
+      else
+        raise NoMethodError
+      end
+    end
+    
     def initialize(*args)
       @hash = {}
     
@@ -32,12 +40,19 @@ module Hashies
               end
             end
           end
+        else
+          if options.has_key?(:default)
+            @hash[current_property] = options[:default]
+          end
+          
+          define_singleton_method("#{current_property.to_s}=".to_sym) do |val|
+            @hash[current_property] = val
+          end
+          define_singleton_method(current_property) do
+            @hash[current_property]
+          end
         end
       end
-      
-      #define_singleton_method(current_property) do
-      #  @hash[current_property]
-      #end      
     end
   end
 end

@@ -23,15 +23,24 @@ describe Hashies::Dash do
     expect{ p.name = nil }.to raise_error ArgumentError
   end
   
-  #it "" do
-  #  p = Person.new(:name => "Bob")
-  #  p.email = 'abc@def.com'
-  #  expect{ p.email }.to eq "abc@def.com"
-  #end
+  it "" do
+    p = Person.new(:name => "Bob")
+    p.email = "abc@def.com"
+    expect( p.email ).to eq "abc@def.com"
+  end
   
-  #it "" do
-  #  p = Person.new(:name => "Bob")
-  #  expect{ p.occupation }.to eq "Rubyist"
-  #end
+  it "" do
+    p = Person.new(:name => "Bob")
+    expect( p.occupation ).to eq "Rubyist"
+  end
   
+  it "" do
+    p = Person.new(:name => "Bob")
+    expect{ p[:awesome] }.to raise_error NoMethodError
+  end
+  
+  it "" do
+    p = Person.new(:name => "Bob")
+    expect( p[:occupation] ).to eq "Rubyist"
+  end
 end
