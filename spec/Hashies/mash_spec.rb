@@ -1,7 +1,6 @@
 # require 'mash'
 require 'spec_helper'
 
-
 describe Hashies::Mash do
   before do
     @mash = Hashies::Mash.new
