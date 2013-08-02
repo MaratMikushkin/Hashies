@@ -21,19 +21,17 @@ module Hashies
 
     def initialize(*args)
       @hash = {}
-      args.map do |arg|
-        # puts arg.keys[0]
+      new_args = {}
+      args[0].map do |arg_key, arg_value|
         self.class.properties.each do |current_property, options|
-          # puts "arg[0]: #{arg[0]}"
-          # puts "options[:from]: #{options[:from]}"
-          if options.has_key?(:from) && options[:from] == arg.keys[0]
-            arg[current_property] =  arg.delete(arg.keys[0])
-            # puts "arg: #{arg}"
+          if options.has_key?(:from) && options[:from] == arg_key
+            new_args[current_property] = arg_value
+          else
+            new_args[arg_key] = arg_value
           end
-
         end
       end
-      # puts "args: #{args}"
+      args[0] = new_args
 
       self.class.properties.each do |current_property, options|
 
@@ -43,6 +41,15 @@ module Hashies
         def_singleton_methods(current_property)
         args.each do |arg|
             @hash[current_property] = arg[current_property] unless arg[current_property].nil?
+        end
+        #puts "#{options} #{args}"
+        if options.has_key?(:transform_with)
+          @hash[current_property] = options[:transform_with].call(
+              @hash[current_property])
+        end
+        if options.has_key?(:with)
+          @hash[current_property] = options[:with].call(
+              @hash[current_property])
         end
         if options.has_key?(:required)
           raise ArgumentError if args.empty?
