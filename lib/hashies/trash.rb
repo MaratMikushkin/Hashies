@@ -21,6 +21,19 @@ module Hashies
 
     def initialize(*args)
       @hash = {}
+      args.map do |arg|
+        # puts arg.keys[0]
+        self.class.properties.each do |current_property, options|
+          # puts "arg[0]: #{arg[0]}"
+          # puts "options[:from]: #{options[:from]}"
+          if options.has_key?(:from) && options[:from] == arg.keys[0]
+            arg[current_property] =  arg.delete(arg.keys[0])
+            # puts "arg: #{arg}"
+          end
+
+        end
+      end
+      # puts "args: #{args}"
 
       self.class.properties.each do |current_property, options|
 

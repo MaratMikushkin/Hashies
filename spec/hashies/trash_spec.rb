@@ -6,4 +6,9 @@ describe Hashies::Trash do
       property :first_name, :from => :firstName
     end
   end
+
+  it "" do
+    p = PersonTwo.new(:firstName => 'Bob')
+    expect( p.first_name  ).to eq 'Bob'
+  end
 end
