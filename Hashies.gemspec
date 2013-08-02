@@ -1,10 +1,10 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'Hashies/version'
+require 'hashies/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "Hashies"
+  spec.name          = "hashies"
   spec.version       = Hashies::VERSION
   spec.authors       = ["Alex Rehsitd"]
   spec.email         = ["qblake.public@gmail.com"]
