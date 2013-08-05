@@ -18,7 +18,13 @@ describe Hashies::Clash do
   it "" do
     c = Hashies::Clash.new
     c.where!.abc('def').ghi(123)._end!.order(:created_at)
-    puts c.inspect
     expect(c).to eq({where: {:abc => 'def', :ghi => 123}, order: :created_at})
+  end
+
+  it "" do
+    c = Hashies::Clash.new
+    c.where(:abc => 'def').where(:hgi => 123)
+    puts c.inspect
+    expect(c).to eq ({where: {:abc => 'def', :hgi => 123}})
   end
 end
