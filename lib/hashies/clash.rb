@@ -4,29 +4,28 @@ module Hashies
       attr_accessor :parent
     end
 
-    def method_missing(m, *args)
-      key = m.to_s[0...-1]
-
-      case m.to_s[-1]
+    def method_missing(called_method, *args)
+      method_type = called_method.to_s[-1]
+      case method_type
       when '!'
-        if m.to_s != "_end!"
-          self[key.to_sym] = Clash.new
-          self[key.to_sym].class.parent= self
-          return self[key.to_sym]
-        else
+        method = called_method.to_s[0...-1].to_sym
+        if method.to_s == "_end"
           return self.class.parent
+        else
+          self[method] = Clash.new
+          self[method].class.parent= self
+          return self[method]
         end
       else
-        define_singleton_method(m) do |val|
-          if self.has_key?(m.to_sym)
-            puts "self[m.to_sym] #{self[m.to_sym]} #{val}"
-            self[m.to_sym][val.keys[0]] = val.values[0]
+        define_singleton_method(called_method) do |val|
+          if self.has_key?(called_method)
+            val.each { |key, value| self[called_method][key] = value}
           else
-            self[m.to_sym] = val
+            self[called_method] = val
           end
           self
         end
-        self[m.to_sym] = args[0]
+        self[called_method] = args[0]
         self
       end
     end
