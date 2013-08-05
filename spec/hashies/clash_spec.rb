@@ -14,4 +14,11 @@ describe Hashies::Clash do
     expect(c).to eq({where:  {:abc => 'def'}, order: :created_at})
     # puts c.where
   end
+
+  it "" do
+    c = Hashies::Clash.new
+    c.where!.abc('def').ghi(123)._end!.order(:created_at)
+    puts c.inspect
+    expect(c).to eq({where: {:abc => 'def', :ghi => 123}, order: :created_at})
+  end
 end
