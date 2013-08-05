@@ -10,30 +10,27 @@ module Hashies
       case m.to_s[-1]
       when '='
         define_singleton_method(m) do |val|
-          @hash[key.to_sym] = val[0]
+          @hash[key.to_sym] = val
         end
-        @hash[key.to_sym] = args[0]
       when '?'
-        define_singleton_method(m) do |val|
+        define_singleton_method(m) do
           return @hash[key.to_sym] != nil ? true : false
         end
-        return @hash[key.to_sym] != nil ? true : false
       when '!'
-        define_singleton_method(m) do |val|
+        define_singleton_method(m) do
           @hash[key.to_sym] = Mash.new unless @hash[key.to_sym]
+          return @hash[key.to_sym]
         end
-        @hash[key.to_sym] = Mash.new unless @hash[key.to_sym]
       when '_'
         define_singleton_method(m) do
           @hash[key.to_sym]
         end
-        @hash[key.to_sym]
       else
         define_singleton_method(m) do
           @hash[m.to_sym]
         end
-        @hash[m.to_sym]
       end
+      send m, *args
     end
   end
 end

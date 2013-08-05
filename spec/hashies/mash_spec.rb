@@ -17,7 +17,7 @@ describe Hashies::Mash do
     expect(@mash.name).to be_nil
   end
 
-  it "" do
+  it "assign name value" do
     @mash.name = "My Mash"
     expect(@mash.name).to eq "My Mash"
   end
@@ -33,7 +33,7 @@ describe Hashies::Mash do
     @mash = Hashies::Mash.new
   end
 
-  it "" do
+  it "!" do
     @mash.author!.name = "Michael Bleigh"
     expect(@mash.author.name).to eq "Michael Bleigh"
   end
